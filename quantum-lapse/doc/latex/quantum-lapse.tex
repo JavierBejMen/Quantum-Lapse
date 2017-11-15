@@ -6,11 +6,11 @@
 
 \title{	
 \normalfont \normalsize 
-\textsc{{\bf Inteligencia de Negocio (2017-2018)} \\ Grado en Ingeniería Informática \\ Universidad de Granada} \\ [25pt] % Your university, school and/or department name(s)
+\textsc{{\bf Private Proyect} \\ Grado en Ingeniería Informática \\ Universidad de Granada} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge Memoria Práctica 1 \\ % The assignment title
+\huge Quantum Lapse \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
-Análisis de Ingresos Basado en Datos Socioeconómicos
+Space Ships Game
 \horrule{2pt} \\
 }
 
@@ -39,6 +39,37 @@ Análisis de Ingresos Basado en Datos Socioeconómicos
 \section{Introducción}
 hola\cite{gitrepo}
 
+\section{Naves}
+La nave espacial es el elemento principal del juego, una nave puede ser tanto un nave espacial como tal o una estación espacial, son todos los elementos que habitan en el espacio no naturales, son los vehículos tanto estáticos como móviles, visitables por el jugador(nave, estacion...) o no(drone, nave robótica..). \\ \\
+Una nave espacial tiene los siguientes componentes:
+\begin{itemize}
+\item \textbf{Hull}, es el casco de la nave y se compone de pixels, formando una figura de pixels. El hull tiene un interior en el que podemos observar todo lo que contiene la nave, desde los personajes hasta los módulos(armas, generadores, pasillos, cables...) y un exterior, en el que se observará el sprite o textura de la nave, con las texturas de los módulos exteriores. Los hull podran combinarse formando la nave.
+\item \textbf{Modules}, los módulos son cualquier componente que podemos añadir a la nave, su dimensión está descrita en pixels, tienen asociado una textura interior y exterior, podrán ser colocados dentro de los límites formados por el hull. Un módulo establece los parámetros de un pixel y asocia la textura a dichos pixeles.
+\item \textbf{Pixel}, representa la unidad mínima de la que se compone una nave, un pixel tiene como parámetros peso, fuerza estructural, salud(representa el nivel de daño sufrido por dicho pixel), resistencia(dificultad de disminuir la salud del pixel), complejidad(dificultad de reparar el pixel) y ocupado(si pertenece a un módulo o no).
+\end{itemize}
+Una nave espacial tiene las siguientes características:
+\begin{itemize}
+\item \textbf{Size}, número de pixels de la nave.
+\item \textbf{Occupation}, relación entre el tamaño de la nave y la cantidad de pixels ocupados, $occupation = \frac{npxocupados}{size}$.
+\item \textbf{Structural}, mide la fuerza estructural, que es igual a la suma de la fuerza estructural de todos los pixels.
+\item \textbf{Weight}, el peso de la nave, es igual a la suma del peso de todos los pixels.
+\item \textbf{Integrity}, representa la integridad estructural de la nave, es una relación entre el tamaño(nº de pixels), la ocupación de la nave(nº de pixels sin módulo en la nave), la fuerza estructural de la nave y el peso de la nave. Luego la fórmula de la integridad es la siguiente:
+$$ Integrity = \frac{structural}{weight}\times(1-occupation) $$ 
+\item \textbf{Acceleration}, dentro de la aceleración tenemos:
+\begin{itemize}
+\item \textbf{ForwardAcceleration}, aceleración hacia delante.
+\item \textbf{BackwardAcceleration}, aceleración hacia atrás.
+\item \textbf{LateralAcceleration}, aceleración lateral.
+\item \textbf{RotationalAcceleration}, aceleración rotacional.
+\end{itemize}
+\item \textbf{Speed}, dentro de la velocidad punta tenemos:
+\begin{itemize}
+\item \textbf{ForwardSpeed}, velocidad hacia delante.
+\item \textbf{BackwardSpeed}, velocidad hacia atrás.
+\item \textbf{LateralSpeed}, velocidad lateral.
+\item \textbf{RotationalSpeed}, velocidad rotacional.
+\end{itemize}
+\end{itemize}
 %----------------------------------------------------------------------------------------
 %   Citas
 %----------------------------------------------------------------------------------------
