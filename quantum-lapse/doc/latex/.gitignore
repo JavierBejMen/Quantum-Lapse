@@ -1,0 +1,6 @@
+#Elementos a ignorar generados por latex
+*
+!.gitignore
+!quantum-lapse.tex
+!citas.bib
+!preambuloSimple.tex
