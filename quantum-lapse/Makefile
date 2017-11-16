@@ -12,7 +12,7 @@ CC = g++
 CCFLAGS = -std=c++11 -Wall -O3 
 GLGLEWFLAGS = -lGL -lGLEW -lSDL2
 
-MAINDEPENDENCIES = $(OBJ)/main.o $(OBJ)/FrameTimer.o
+MAINDEPENDENCIES = $(OBJ)/main.o $(OBJ)/FrameTimer.o $(OBJ)/PixelShader.o $(OBJ)/Shader.o
 
 TARGETS = clean $(BIN)/main
 
@@ -28,6 +28,12 @@ $(OBJ)/Pixel.o: $(SRC)/Pixel.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 $(OBJ)/FrameTimer.o: $(SRC)/FrameTimer.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/Shader.o: $(SRC)/Shader.cpp 
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/PixelShader.o: $(SRC)/PixelShader.cpp 
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 # Clean

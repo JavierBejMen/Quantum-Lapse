@@ -3,6 +3,8 @@
 //#include "Pixel.hpp"
 
 #include "FrameTimer.hpp"
+#include "Shader.hpp"
+#include "PixelShader.hpp"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -46,6 +48,8 @@ try{
 		
 		// Make sure the screen size and viewport are set correctly.
 		AdjustViewport(mainWindow);
+		
+		PixelShader::Init();
 		
 		RunGame();
 		
@@ -206,8 +210,8 @@ void RunGame(){
 					break;
 				case SDLK_r:
 					// Cover with red and update
-					glClearColor(1.0, 0.0, 0.0, 1.0);
 					glClear(GL_COLOR_BUFFER_BIT);
+					PixelShader::Draw();
 					break;
 				case SDLK_g:
 					// Cover with green and update
