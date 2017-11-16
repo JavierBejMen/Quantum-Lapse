@@ -1,3 +1,11 @@
+#ingoramos ficheros objeto y binarios
 /bin/*
 /obj/*
+
+#Elementos a ignorar generados por documentaciones
+/doc/*
+!/doc/latex/quantum-lapse.tex
+!/doc/latex/citas.bib
+!/doc/latex/preambuloSimple.tex
+!/doc/doxygen/srcdoc
 
