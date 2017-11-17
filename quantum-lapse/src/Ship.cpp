@@ -1,5 +1,7 @@
 #include "Ship.hpp"
 
+using namespace std;
+
 Ship::Ship(){
 }
 

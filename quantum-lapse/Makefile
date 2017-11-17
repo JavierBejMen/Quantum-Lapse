@@ -9,20 +9,22 @@ LIB = lib
 INCLUDE = include
 
 CC = g++
-CCFLAGS = -std=c++11 -Wall -O3 
+CCFLAGS = -std=c++11 -Wall -O3  
 GLGLEWFLAGS = -lGL -lGLEW -lSDL2
+PNGFLAGS = -lpng
+ 
 
-MAINDEPENDENCIES = $(OBJ)/main.o $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o
+MAINDEPENDENCIES = $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o $(OBJ)/ImageBuffer.o $(OBJ)/main.o   
 
 TARGETS = clean $(BIN)/main
 
 all: $(TARGETS)
 
 $(BIN)/main: $(MAINDEPENDENCIES)
-	$(CC) $^ $(GLGLEWFLAGS) $(CCFLAGS) -o $@  
+	$(CC) $^ $(GLGLEWFLAGS) $(CCFLAGS) -o $@
 
 $(OBJ)/main.o: $(SRC)/main.cpp
-	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE) 
 	
 $(OBJ)/FrameTimer.o: $(SRC)/FrameTimer.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
@@ -40,6 +42,9 @@ $(OBJ)/PixelArray.o: $(SRC)/PixelArray.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 $(OBJ)/Ship.o: $(SRC)/Ship.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/ImageBuffer.o: $(SRC)/ImageBuffer.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 # Clean
