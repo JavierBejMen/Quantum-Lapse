@@ -1,9 +1,10 @@
-#ingoramos ficheros objeto y binarios
-/bin/*
-/obj/*
+#ingoramos todo
+/*
 
-#Elementos a ignorar generados por documentaciones
-/doc/*
+!/.gitignore
+!/src/*
+!/include/*
+!/Makefile
 !/doc/latex/quantum-lapse.tex
 !/doc/latex/citas.bib
 !/doc/latex/preambuloSimple.tex
