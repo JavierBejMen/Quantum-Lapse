@@ -4,7 +4,10 @@
 
 #include "FrameTimer.hpp"
 #include "Shader.hpp"
-#include "PixelShader.hpp"
+#include "ShipShader.hpp"
+#include "Pixel.hpp"
+#include "PixelArray.hpp"
+#include "Ship.hpp"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -33,6 +36,9 @@ void RunGame();
 
 using namespace std;
 
+
+
+
 int main(int argc, char* argv[]){
 	
 	
@@ -49,7 +55,8 @@ try{
 		// Make sure the screen size and viewport are set correctly.
 		AdjustViewport(mainWindow);
 		
-		PixelShader::Init();
+		
+		
 		
 		RunGame();
 		
@@ -196,7 +203,46 @@ void InitSDL(){
 
 void RunGame(){
 	bool loop = true;
-
+	
+	float dos[]={
+		-.5f, -.5f,
+		-.5f,  .5f,
+		 .5f, -.5f,
+		 .5f,  .5f
+		};
+	
+	cout<<"size of dos: "<<sizeof(dos)<<endl;
+	unsigned int tam = 8;	
+	PixelArray px(dos, tam);
+	
+	Ship ship(px);
+	
+	float tres[]={
+		-.5f, -.5f,
+		-.5f,  .5f,
+		 .5f, -.5f,
+		 .5f,  .5f,
+		 1.f, .5f
+		};
+	tam = 10;
+	cout<<"size of tres: "<<sizeof(tres)<<endl;
+	PixelArray opx(tres, tam);
+	Ship otra(opx);
+	
+	float cuat[]={
+		-.5f, -.5f,
+		-.5f,  .5f,
+		 .5f, -.5f,
+		 .5f,  .5f,
+		 1.f, -.5f,
+		 1.f, .5f
+		 
+		};
+	tam = 12;
+	cout<<"size of cuat: "<<sizeof(cuat)<<endl;
+	PixelArray opxo(cuat, tam);
+	Ship otramas(opxo);
+	
 	while (loop){
 		SDL_Event event;
 		while (SDL_PollEvent(&event)){
@@ -211,17 +257,19 @@ void RunGame(){
 				case SDLK_r:
 					// Cover with red and update
 					glClear(GL_COLOR_BUFFER_BIT);
-					PixelShader::Draw();
+					ship.Draw();
 					break;
 				case SDLK_g:
 					// Cover with green and update
 					glClearColor(0.0, 1.0, 0.0, 1.0);
 					glClear(GL_COLOR_BUFFER_BIT);
+					otra.Draw();
 					break;
 				case SDLK_b:
 					// Cover with blue and update
 					glClearColor(0.0, 0.0, 1.0, 1.0);
 					glClear(GL_COLOR_BUFFER_BIT);
+					otramas.Draw();
 					break;
 				default:
 					break;

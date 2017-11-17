@@ -23,12 +23,14 @@ using namespace std;
 
 Shader::Shader(const char *vertex, const char *fragment)
 {
+	
 	GLuint vertexShader = Compile(vertex, GL_VERTEX_SHADER);
 	GLuint fragmentShader = Compile(fragment, GL_FRAGMENT_SHADER);
 	
 	program = glCreateProgram();
 	if(!program)
 		throw runtime_error("Creating OpenGL shader program failed.");
+	
 	
 	glAttachShader(program, vertexShader);
 	glAttachShader(program, fragmentShader);
@@ -77,6 +79,7 @@ GLint Shader::Uniform(const char *name) const
 
 GLuint Shader::Compile(const char *str, GLenum type)
 {
+	
 	GLuint object = glCreateShader(type);
 	if(!object)
 		throw runtime_error("Shader creation failed.");
