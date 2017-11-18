@@ -9,19 +9,19 @@ LIB = lib
 INCLUDE = include
 
 CC = g++
-CCFLAGS = -std=c++11 -Wall -O3  
+CCFLAGS = -std=c++11 -Wall -O3 
 GLGLEWFLAGS = -lGL -lGLEW -lSDL2
 PNGFLAGS = -lpng
  
 
-MAINDEPENDENCIES = $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o $(OBJ)/ImageBuffer.o $(OBJ)/main.o   
+MAINDEPENDENCIES = $(OBJ)/utils.o $(OBJ)/FileWrapper.o $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o $(OBJ)/ImageBuffer.o $(OBJ)/main.o   
 
 TARGETS = clean $(BIN)/main
 
 all: $(TARGETS)
 
 $(BIN)/main: $(MAINDEPENDENCIES)
-	$(CC) $^ $(GLGLEWFLAGS) $(CCFLAGS) -o $@
+	$(CC) $^ $(GLGLEWFLAGS) $(CCFLAGS) -o $@  $(PNGFLAGS)
 
 $(OBJ)/main.o: $(SRC)/main.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE) 
@@ -45,6 +45,12 @@ $(OBJ)/Ship.o: $(SRC)/Ship.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 $(OBJ)/ImageBuffer.o: $(SRC)/ImageBuffer.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/FileWrapper.o: $(SRC)/FileWrapper.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/utils.o: $(SRC)/utils.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 # Clean

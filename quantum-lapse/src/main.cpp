@@ -9,6 +9,7 @@
 #include "PixelArray.hpp"
 #include "Ship.hpp"
 #include "ImageBuffer.hpp"
+#include "FileWrapper.hpp"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
