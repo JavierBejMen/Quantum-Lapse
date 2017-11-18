@@ -1,12 +1,12 @@
 #ingoramos todo
-/*
+*
 
-!/.gitignore
-!/src/*
-!/include/*
-!/Makefile
-!/doc/latex/quantum-lapse.tex
-!/doc/latex/citas.bib
-!/doc/latex/preambuloSimple.tex
-!/doc/doxygen/srcdoc
+!.gitignore
+!quantum-lapse/src/*
+!quantum-lapse/include/*
+!quantum-lapse/Makefile
+!quantum-lapse.tex
+!citas.bib
+!preambuloSimple.tex
+!srcdoc
 
