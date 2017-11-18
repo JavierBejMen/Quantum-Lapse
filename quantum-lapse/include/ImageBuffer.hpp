@@ -24,17 +24,36 @@ public:
 	ImageBuffer();
 	
 	/**
+	* @brief Destructor
+	*/
+	~ImageBuffer();
+	
+	
+	/**
 	* @brief Carga el archivo PNG.
 	* 
 	* @param path contiene la dirección del archivo.
 	*/
-	const utils::FileErrLog& ReadPNG(const std::string& path); 
+	const utils::FileErrLog& ReadPNG(const std::string& path);
 	
 private:
-	int width; /**< @brief Anchura de la imagen. */
-	int height; /**< @brief Altura de la imagen. */
+	unsigned int width; /**< @brief Anchura de la imagen. */
+	unsigned int height; /**< @brief Altura de la imagen. */
 	uint32_t *pixels; /**< @brief Representa el array con todos los pixels. */
 	utils::FileErrLog errLog; /**< @brief Representa el log en las operaciones I/O. */
+	
+	/**
+	* @brief Reserva el buffer.
+	* 
+	* @param width ancho de la imagen.
+	* @param height alto de la imagen.
+	*/
+	void resize(const unsigned int& width, const unsigned int& height);
+	
+	/**
+	* @brief Libera el heap
+	*/
+	void clear();
 	
 };
 

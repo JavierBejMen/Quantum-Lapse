@@ -1,6 +1,5 @@
 #ingoramos todo
 *
-
 !.gitignore
 !quantum-lapse/src/*
 !quantum-lapse/include/*

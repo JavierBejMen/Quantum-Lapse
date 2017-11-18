@@ -2,7 +2,7 @@
 #define __UTILS_H__
 
 #include <string>
-#include <fstream>
+#include <cstdio>
 
 
 
@@ -41,6 +41,62 @@ namespace utils{
 		const std::string& What() const;
 	};
 	
+	/**
+	* @class File
+	* @brief Wrapper para fstream, libera al programador de menejar el flujo de I/O.
+	*/
+	class File{
+	private:
+		FILE* file; /**< @brief fichero fstream */
+		FileErrLog errLog; /**< @brief Log de error */
+		
+		/**
+		* @brief Cierra el fichero.
+		*/
+		void clear();
+		
+	public:
+		
+		/**
+		* @brief Constructor por defecto.
+		*/
+		File() = delete;
+		
+		/**
+		* @brief No tiene constructor de copia.
+		*/
+		File(const File &) = delete;
+		
+		/**
+		* @brief Constructor con parámetros.
+		* @param path Dirección del fichero.
+		* @param mode modo de apertura, se especifica igual que en fstream.
+		*/
+		explicit File(const std::string& path, const std::string& mode);
+		
+		
+		/**
+		* @brief Destructor.
+		*/
+		~File();
+		
+		/**
+		* @brief No tiene operador de asignación.
+		*/
+		File &operator=(const File &) = delete;
+		
+		/**
+		* @brief Consultar si el fichero está abierto.
+		*/
+		operator bool() const;
+		
+		/**
+		* @brief Operator para devolver el tipo _IO_FILE*.
+		*/
+		operator FILE*() const;
+		
+	};
+
 };
 
 

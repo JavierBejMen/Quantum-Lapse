@@ -14,14 +14,33 @@ namespace utils{
 	bool FileErrLog::Good() const{
 		return this->good;
 	}
-	
+		
 	const string& FileErrLog::What() const{
 		return this->msg;
 	}
 	
 	
+	//File
 	
+	void File::clear(){
+		fclose(this->file);
+	}
 	
+	File::File(const std::string& path, const std::string& mode){
+		this->file = fopen(path.c_str(), mode.c_str());
+	}
 	
+	File::~File(){
+		if(this->file)
+			this->clear();
+	}
+	
+	File::operator bool() const{
+		return this->file;
+	}
+	
+	File::operator FILE*() const{
+		return this->file;
+	}
 }
 	
