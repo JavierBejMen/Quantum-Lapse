@@ -11,9 +11,11 @@
 #include "ImageBuffer.hpp"
 #include "FileWrapper.hpp"
 #include "utils.hpp"
+#include "SpriteShader.hpp"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
+
 
 
 #include <cstring>
@@ -53,6 +55,7 @@ try{
 		
 		glClearColor(0.f, 0.f, 0.0f, 1.f);
 		glEnable(GL_BLEND);
+		glEnable(GL_TEXTURE_2D);
 		glDisable(GL_DEPTH_TEST);
 		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		
@@ -247,6 +250,14 @@ void RunGame(){
 	PixelArray opxo(cuat, tam);
 	Ship otramas(opxo);
 	
+	ImageBuffer img;
+	img.ReadPNG("data/Ship/SSC_O.png");
+	
+	SpriteShader::Init();
+	Sprite sprite("prueba");
+	sprite.Generate(img);
+	
+	
 	while (loop){
 		SDL_Event event;
 		while (SDL_PollEvent(&event)){
@@ -261,7 +272,7 @@ void RunGame(){
 				case SDLK_r:
 					// Cover with red and update
 					glClear(GL_COLOR_BUFFER_BIT);
-					ship.Draw();
+					SpriteShader::Draw(sprite);
 					break;
 				case SDLK_g:
 					// Cover with green and update

@@ -14,7 +14,7 @@ GLGLEWFLAGS = -lGL -lGLEW -lSDL2
 PNGFLAGS = -lpng
  
 
-MAINDEPENDENCIES = $(OBJ)/utils.o $(OBJ)/FileWrapper.o $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o $(OBJ)/ImageBuffer.o $(OBJ)/main.o   
+MAINDEPENDENCIES = $(OBJ)/Sprite.o $(OBJ)/SpriteShader.o $(OBJ)/utils.o $(OBJ)/FileWrapper.o $(OBJ)/FrameTimer.o $(OBJ)/ShipShader.o $(OBJ)/Shader.o $(OBJ)/Pixel.o $(OBJ)/Ship.o $(OBJ)/PixelArray.o $(OBJ)/ImageBuffer.o $(OBJ)/main.o   
 
 TARGETS = clean $(BIN)/main
 
@@ -51,6 +51,12 @@ $(OBJ)/FileWrapper.o: $(SRC)/FileWrapper.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 $(OBJ)/utils.o: $(SRC)/utils.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+	
+$(OBJ)/SpriteShader.o: $(SRC)/SpriteShader.cpp
+	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
+
+$(OBJ)/Sprite.o: $(SRC)/Sprite.cpp
 	$(CC) $(CCFLAGS) -c -o $@ $^ -I$(INCLUDE)
 	
 # Clean

@@ -36,6 +36,27 @@ public:
 	*/
 	const utils::FileErrLog& ReadPNG(const std::string& path);
 	
+	/**
+	* @brief Consultar el vector de pixels.
+	* 
+	* @return el vector de pixels.
+	*/
+	const uint32_t *getRaw() const;
+	
+	/**
+	* @brief Consultar la anchura de la imagen.
+	* 
+	* @return width.
+	*/
+	const unsigned int& getWidth() const;
+	
+	/**
+	* @brief Consultar la altura de la imagen.
+	* 
+	* @return height.
+	*/
+	const unsigned int& getHeight() const;
+	
 private:
 	unsigned int width; /**< @brief Anchura de la imagen. */
 	unsigned int height; /**< @brief Altura de la imagen. */

@@ -135,3 +135,15 @@ const utils::FileErrLog& ImageBuffer::ReadPNG(const string& path){
 	errLog.setLog("",path,true);
 	return errLog;
 }
+
+const uint32_t * ImageBuffer::getRaw() const{
+	return this->pixels;
+}
+
+const unsigned int& ImageBuffer::getWidth() const{
+	return this->width;
+}
+
+const unsigned int& ImageBuffer::getHeight() const{
+	return this->height;
+}
