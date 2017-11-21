@@ -12,6 +12,7 @@
 #include "FileWrapper.hpp"
 #include "utils.hpp"
 #include "SpriteShader.hpp"
+#include "Screen.hpp"
 
 #include "gl_header.h"
 #include <SDL2/SDL.h>
@@ -101,6 +102,7 @@ void AdjustViewport(SDL_Window *window){
 	int width, height;
 	SDL_GetWindowSize(window, &width, &height);
 	
+	Screen::SetRaw(width, height);
 	// Round the window size up to a multiple of 2, even if this
 	// means one pixel of the display will be clipped.
 	int roundWidth = (width + 1) & ~1;
@@ -166,7 +168,7 @@ void InitSDL(){
 		
 	mainWindow = SDL_CreateWindow("Quantum Lapse",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			500, 500, flags);
+			720, 720, flags);
 	if(!mainWindow)
 		throw runtime_error("Unable to create window!");
 		
@@ -251,7 +253,7 @@ void RunGame(){
 	Ship otramas(opxo);
 	
 	ImageBuffer img;
-	img.ReadPNG("data/Ship/SSC_O.png");
+	img.ReadPNG("data/Ship/aerie.png");
 	
 	SpriteShader::Init();
 	Sprite sprite("prueba");
@@ -261,10 +263,14 @@ void RunGame(){
 	while (loop){
 		SDL_Event event;
 		while (SDL_PollEvent(&event)){
-			if (event.type == SDL_QUIT)
+			if (event.type == SDL_QUIT){
 				loop = false;
-
-			if (event.type == SDL_KEYDOWN){
+			}
+			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED){
+				AdjustViewport(mainWindow);
+				cout<<"RESIZEEEEEEEE"<<endl;
+			}
+			else if (event.type == SDL_KEYDOWN){
 				switch (event.key.keysym.sym){
 				case SDLK_ESCAPE:
 					loop = false;
@@ -290,8 +296,10 @@ void RunGame(){
 					break;
 				}
 				
-				SDL_GL_SwapWindow(mainWindow);
+				
 			}
+			
+			SDL_GL_SwapWindow(mainWindow);
 		}
 	}
 }
