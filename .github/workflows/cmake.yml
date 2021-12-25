@@ -1,6 +1,17 @@
 name: Quantum Lapse CI
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
+        
   push:
     branches: [ $default-branch ]
   pull_request:
